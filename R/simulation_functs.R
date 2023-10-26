@@ -20,21 +20,6 @@
 #'   family_object = family_object,
 #'   add_intercept = TRUE
 #' )
-#'
-#' # 1. fit a GLM excluding the treatment
-#' fit <- glm(
-#'   y ~ design_matrix[,-x],
-#'   family = family_object,
-#' )
-#'
-#' # 2. obtain the permuted treatment vectors
-#' permutations <- permute_bernoulli_treatment_vector(x)
-#'
-#' # 3. perform the score statistic precomputation
-#' precomputation <- run_score_stat_precomputation(fit)
-#'
-#' # 4. run the permutation test
-#' p_value <- run_perm_test_score_stat_binary_trt(x, precomputation, permutations)
 generate_glm_data <- function(design_matrix, coefficients, family_object, add_intercept = TRUE) {
   if (!is(design_matrix, "matrix")) stop("`design_matrix` must be an object of class matrix.")
   family_object <- family_object |> augment_family_object()

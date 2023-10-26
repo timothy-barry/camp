@@ -39,16 +39,4 @@ y <- generate_glm_data(
   family_object = family_object,
   add_intercept = TRUE
 )
-
-# 1. fit a GLM excluding the treatment
-fit <- glm(
-  y ~ design_matrix[,-x],
-  family = family_object,
-)
-
-# 2. obtain the permuted treatment vectors
-permuted_vectors <- permute_bernoulli_treatment_vector(x)
-
-# 3. perform the score statistic precomputation
-precomputation <- run_score_stat_precomputation(fit)
 }

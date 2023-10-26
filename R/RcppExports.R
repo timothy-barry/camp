@@ -11,7 +11,11 @@ fisher_yates_samlper <- function(n, s, B) {
     .Call(`_camp_fisher_yates_samlper`, n, s, B)
 }
 
-run_low_level_test_full_v4 <- function(y, mu, a, w, D, trt_idxs, n_trt, use_all_cells, synthetic_idxs, B1, B2, B3, fit_parametric_curve, return_resampling_dist, side_code) {
-    .Call(`_camp_run_low_level_test_full_v4`, y, mu, a, w, D, trt_idxs, n_trt, use_all_cells, synthetic_idxs, B1, B2, B3, fit_parametric_curve, return_resampling_dist, side_code)
+run_test_score_stat_binary_cpp <- function(trt_idxs, synthetic_idxs, a, w, D, s, B, side, adaptive, B_0, p_thresh, return_null_distribution) {
+    .Call(`_camp_run_test_score_stat_binary_cpp`, trt_idxs, synthetic_idxs, a, w, D, s, B, side, adaptive, B_0, p_thresh, return_null_distribution)
+}
+
+compute_empirical_p_value <- function(null_statistics, z_orig, side) {
+    .Call(`_camp_compute_empirical_p_value`, null_statistics, z_orig, side)
 }
 

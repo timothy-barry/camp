@@ -23,35 +23,46 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
-// run_low_level_test_full_v4
-SEXP run_low_level_test_full_v4(NumericVector y, NumericVector mu, NumericVector a, NumericVector w, NumericMatrix D, IntegerVector trt_idxs, int n_trt, bool use_all_cells, SEXP synthetic_idxs, int B1, int B2, int B3, bool fit_parametric_curve, bool return_resampling_dist, int side_code);
-RcppExport SEXP _camp_run_low_level_test_full_v4(SEXP ySEXP, SEXP muSEXP, SEXP aSEXP, SEXP wSEXP, SEXP DSEXP, SEXP trt_idxsSEXP, SEXP n_trtSEXP, SEXP use_all_cellsSEXP, SEXP synthetic_idxsSEXP, SEXP B1SEXP, SEXP B2SEXP, SEXP B3SEXP, SEXP fit_parametric_curveSEXP, SEXP return_resampling_distSEXP, SEXP side_codeSEXP) {
+// run_test_score_stat_binary_cpp
+SEXP run_test_score_stat_binary_cpp(IntegerVector trt_idxs, SEXP synthetic_idxs, NumericVector a, NumericVector w, NumericMatrix D, int s, int B, int side, bool adaptive, int B_0, double p_thresh, bool return_null_distribution);
+RcppExport SEXP _camp_run_test_score_stat_binary_cpp(SEXP trt_idxsSEXP, SEXP synthetic_idxsSEXP, SEXP aSEXP, SEXP wSEXP, SEXP DSEXP, SEXP sSEXP, SEXP BSEXP, SEXP sideSEXP, SEXP adaptiveSEXP, SEXP B_0SEXP, SEXP p_threshSEXP, SEXP return_null_distributionSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< NumericVector >::type y(ySEXP);
-    Rcpp::traits::input_parameter< NumericVector >::type mu(muSEXP);
+    Rcpp::traits::input_parameter< IntegerVector >::type trt_idxs(trt_idxsSEXP);
+    Rcpp::traits::input_parameter< SEXP >::type synthetic_idxs(synthetic_idxsSEXP);
     Rcpp::traits::input_parameter< NumericVector >::type a(aSEXP);
     Rcpp::traits::input_parameter< NumericVector >::type w(wSEXP);
     Rcpp::traits::input_parameter< NumericMatrix >::type D(DSEXP);
-    Rcpp::traits::input_parameter< IntegerVector >::type trt_idxs(trt_idxsSEXP);
-    Rcpp::traits::input_parameter< int >::type n_trt(n_trtSEXP);
-    Rcpp::traits::input_parameter< bool >::type use_all_cells(use_all_cellsSEXP);
-    Rcpp::traits::input_parameter< SEXP >::type synthetic_idxs(synthetic_idxsSEXP);
-    Rcpp::traits::input_parameter< int >::type B1(B1SEXP);
-    Rcpp::traits::input_parameter< int >::type B2(B2SEXP);
-    Rcpp::traits::input_parameter< int >::type B3(B3SEXP);
-    Rcpp::traits::input_parameter< bool >::type fit_parametric_curve(fit_parametric_curveSEXP);
-    Rcpp::traits::input_parameter< bool >::type return_resampling_dist(return_resampling_distSEXP);
-    Rcpp::traits::input_parameter< int >::type side_code(side_codeSEXP);
-    rcpp_result_gen = Rcpp::wrap(run_low_level_test_full_v4(y, mu, a, w, D, trt_idxs, n_trt, use_all_cells, synthetic_idxs, B1, B2, B3, fit_parametric_curve, return_resampling_dist, side_code));
+    Rcpp::traits::input_parameter< int >::type s(sSEXP);
+    Rcpp::traits::input_parameter< int >::type B(BSEXP);
+    Rcpp::traits::input_parameter< int >::type side(sideSEXP);
+    Rcpp::traits::input_parameter< bool >::type adaptive(adaptiveSEXP);
+    Rcpp::traits::input_parameter< int >::type B_0(B_0SEXP);
+    Rcpp::traits::input_parameter< double >::type p_thresh(p_threshSEXP);
+    Rcpp::traits::input_parameter< bool >::type return_null_distribution(return_null_distributionSEXP);
+    rcpp_result_gen = Rcpp::wrap(run_test_score_stat_binary_cpp(trt_idxs, synthetic_idxs, a, w, D, s, B, side, adaptive, B_0, p_thresh, return_null_distribution));
+    return rcpp_result_gen;
+END_RCPP
+}
+// compute_empirical_p_value
+double compute_empirical_p_value(const std::vector<double>& null_statistics, double z_orig, int side);
+RcppExport SEXP _camp_compute_empirical_p_value(SEXP null_statisticsSEXP, SEXP z_origSEXP, SEXP sideSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< const std::vector<double>& >::type null_statistics(null_statisticsSEXP);
+    Rcpp::traits::input_parameter< double >::type z_orig(z_origSEXP);
+    Rcpp::traits::input_parameter< int >::type side(sideSEXP);
+    rcpp_result_gen = Rcpp::wrap(compute_empirical_p_value(null_statistics, z_orig, side));
     return rcpp_result_gen;
 END_RCPP
 }
 
 static const R_CallMethodDef CallEntries[] = {
     {"_camp_fisher_yates_samlper", (DL_FUNC) &_camp_fisher_yates_samlper, 3},
-    {"_camp_run_low_level_test_full_v4", (DL_FUNC) &_camp_run_low_level_test_full_v4, 15},
+    {"_camp_run_test_score_stat_binary_cpp", (DL_FUNC) &_camp_run_test_score_stat_binary_cpp, 12},
+    {"_camp_compute_empirical_p_value", (DL_FUNC) &_camp_compute_empirical_p_value, 3},
     {NULL, NULL, 0}
 };
 

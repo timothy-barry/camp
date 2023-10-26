@@ -3,8 +3,8 @@ run_score_stat_precomputation <- function(fitted_glm) {
   # extract pieces from GLM: family object, mu, y, and covariate matrix
   family_object <- fitted_glm$family
   fam_str <- gsub(x = family_object$family, replacement = "", pattern = "\\([0-9]+\\)")
-  mu <- fitted_glm$fitted.values |> setNames(NULL)
-  y <- fitted_glm$y |> setNames(NULL)
+  mu <- fitted_glm$fitted.values
+  y <- fitted_glm$y
   covariate_matrix <- stats::model.matrix(fitted_glm$formula, data = fitted_glm$model)
 
   # special case for NB reg and Poisson reg with log link (for our genomics peeps!)
@@ -35,10 +35,11 @@ run_score_stat_precomputation <- function(fitted_glm) {
 }
 
 
-permute_bernoulli_treatment_vector <- function(x, B = 5000L) {
+permute_bernoulli_treatment_vector <- function(x, B = 5498L) {
   if (!all(x %in% c(0, 1))) stop("x is not a bernoulli vector.")
-  s <- sum(x == 1)
   n <- length(x)
-  perm <- fisher_yates_samlper(n, s, B)
-  return(perm)
+  trt_idxs <- which(x == 1) - 1L
+  s <- length(trt_idxs)
+  synthetic_idxs <- fisher_yates_samlper(n, s, B)
+  return(list(synthetic_idxs = synthetic_idxs, trt_idxs = trt_idxs, B = B, s = s))
 }
