@@ -23,6 +23,26 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// run_test_resid_stat_binary_cpp
+SEXP run_test_resid_stat_binary_cpp(IntegerVector trt_idxs, SEXP synthetic_idxs, NumericVector resids, int s, int B, int side, bool adaptive, int B_0, double p_thresh, bool return_null_distribution);
+RcppExport SEXP _camp_run_test_resid_stat_binary_cpp(SEXP trt_idxsSEXP, SEXP synthetic_idxsSEXP, SEXP residsSEXP, SEXP sSEXP, SEXP BSEXP, SEXP sideSEXP, SEXP adaptiveSEXP, SEXP B_0SEXP, SEXP p_threshSEXP, SEXP return_null_distributionSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< IntegerVector >::type trt_idxs(trt_idxsSEXP);
+    Rcpp::traits::input_parameter< SEXP >::type synthetic_idxs(synthetic_idxsSEXP);
+    Rcpp::traits::input_parameter< NumericVector >::type resids(residsSEXP);
+    Rcpp::traits::input_parameter< int >::type s(sSEXP);
+    Rcpp::traits::input_parameter< int >::type B(BSEXP);
+    Rcpp::traits::input_parameter< int >::type side(sideSEXP);
+    Rcpp::traits::input_parameter< bool >::type adaptive(adaptiveSEXP);
+    Rcpp::traits::input_parameter< int >::type B_0(B_0SEXP);
+    Rcpp::traits::input_parameter< double >::type p_thresh(p_threshSEXP);
+    Rcpp::traits::input_parameter< bool >::type return_null_distribution(return_null_distributionSEXP);
+    rcpp_result_gen = Rcpp::wrap(run_test_resid_stat_binary_cpp(trt_idxs, synthetic_idxs, resids, s, B, side, adaptive, B_0, p_thresh, return_null_distribution));
+    return rcpp_result_gen;
+END_RCPP
+}
 // run_test_score_stat_binary_cpp
 SEXP run_test_score_stat_binary_cpp(IntegerVector trt_idxs, SEXP synthetic_idxs, NumericVector a, NumericVector w, NumericMatrix D, int s, int B, int side, bool adaptive, int B_0, double p_thresh, bool return_null_distribution);
 RcppExport SEXP _camp_run_test_score_stat_binary_cpp(SEXP trt_idxsSEXP, SEXP synthetic_idxsSEXP, SEXP aSEXP, SEXP wSEXP, SEXP DSEXP, SEXP sSEXP, SEXP BSEXP, SEXP sideSEXP, SEXP adaptiveSEXP, SEXP B_0SEXP, SEXP p_threshSEXP, SEXP return_null_distributionSEXP) {
@@ -61,6 +81,7 @@ END_RCPP
 
 static const R_CallMethodDef CallEntries[] = {
     {"_camp_fisher_yates_samlper", (DL_FUNC) &_camp_fisher_yates_samlper, 3},
+    {"_camp_run_test_resid_stat_binary_cpp", (DL_FUNC) &_camp_run_test_resid_stat_binary_cpp, 10},
     {"_camp_run_test_score_stat_binary_cpp", (DL_FUNC) &_camp_run_test_score_stat_binary_cpp, 12},
     {"_camp_compute_empirical_p_value", (DL_FUNC) &_camp_compute_empirical_p_value, 3},
     {NULL, NULL, 0}

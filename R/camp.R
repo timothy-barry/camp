@@ -31,12 +31,18 @@
 #' permutations <- permute_bernoulli_treatment_vector(x)
 #'
 #' # 3. perform the score statistic precomputation
-#' precomputation <- run_score_stat_precomputation(fit)
+#' precomputation_score <- run_score_stat_precomputation(fit)
 #'
 #' # 4. run the permutation test
-#' res <- run_perm_test_score_stat_binary_trt(permutations, precomputation)
+#' res_score <- run_perm_test_score_stat_binary_trt(permutations, precomputation_score)
 #'
-#' # 5. compare to standard GLM p-value
+#' # 5. perform deviance resid precomputation
+#' precomputation_resid <- run_resid_precomputation(fit)
+#'
+#' # 6. run the permutation test
+#' res_resid <- run_perm_test_resid_stat_binary_trt(permutations, precomputation_resid)
+#'
+#' # 6. compare to standard GLM p-value
 #' fit_full <- glm(
 #'   y ~ design_matrix,
 #'   family = family_object,

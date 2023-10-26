@@ -35,6 +35,12 @@ run_score_stat_precomputation <- function(fitted_glm) {
 }
 
 
+run_resid_precomputation <- function(fit, type = "deviance") {
+ resids <- stats::residuals(fit, type = type)
+ return(resids)
+}
+
+
 permute_bernoulli_treatment_vector <- function(x, B = 5498L) {
   if (!all(x %in% c(0, 1))) stop("x is not a bernoulli vector.")
   n <- length(x)

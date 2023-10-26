@@ -11,6 +11,10 @@ fisher_yates_samlper <- function(n, s, B) {
     .Call(`_camp_fisher_yates_samlper`, n, s, B)
 }
 
+run_test_resid_stat_binary_cpp <- function(trt_idxs, synthetic_idxs, resids, s, B, side, adaptive, B_0, p_thresh, return_null_distribution) {
+    .Call(`_camp_run_test_resid_stat_binary_cpp`, trt_idxs, synthetic_idxs, resids, s, B, side, adaptive, B_0, p_thresh, return_null_distribution)
+}
+
 run_test_score_stat_binary_cpp <- function(trt_idxs, synthetic_idxs, a, w, D, s, B, side, adaptive, B_0, p_thresh, return_null_distribution) {
     .Call(`_camp_run_test_score_stat_binary_cpp`, trt_idxs, synthetic_idxs, a, w, D, s, B, side, adaptive, B_0, p_thresh, return_null_distribution)
 }
