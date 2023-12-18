@@ -5,11 +5,12 @@ using namespace Rcpp;
 
 
 double compute_observed_resid_statistic(const NumericVector& resids, int s, IntegerVector trt_idxs) {
-  double sum = 0, stat;
-  for (int i = 0; i < s; i ++) {
-    sum += resids[trt_idxs[i]];
-  }
-  stat = 1/(sqrt(s)) * sum;
+  double tot_sum = 0, trt_sum = 0, control_sum = 0, stat = 0;
+  int n_control = resids.size() - s;
+  for (int i = 0; i < resids.size(); i ++) tot_sum += resids[i];
+  for (int i = 0; i < s; i ++) trt_sum += resids[trt_idxs[i]];
+  control_sum = tot_sum - trt_sum;
+  stat = trt_sum/s - control_sum/n_control;
   return(stat);
 }
 
@@ -21,15 +22,20 @@ std::vector<double> compute_null_resid_statistics(const NumericVector& resids, i
   // initialize variables
   int* curr_vect;
   std::vector<double> out(n_stats_to_compute);
-  double sum, stat;
+  double tot_sum = 0, trt_sum = 0, control_sum = 0, stat = 0;
+
+  // compute control_sum and n_control
+  int n_control = resids.size() - s;
+  for (int i = 0; i < resids.size(); i ++) tot_sum += resids[i];
 
   for (int k = start_pos; k < n_stats_to_compute + start_pos; k ++) {
-    sum = 0;
+    trt_sum = 0;
     curr_vect = &(*synth_idx_list)[k][0];
     for (int j = 0; j < s; j ++) {
-      sum += resids[curr_vect[j]];
+      trt_sum += resids[curr_vect[j]];
     }
-    stat = 1/(sqrt(s)) * sum;
+    control_sum = tot_sum - trt_sum;
+    stat = trt_sum/s - control_sum/n_control;
     out[k - start_pos] = stat;
   }
   return(out);
