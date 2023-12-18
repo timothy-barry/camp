@@ -47,5 +47,5 @@
 #'   y ~ design_matrix,
 #'   family = family_object,
 #' )
-#' summary(fit_full)$coefficients
+#' summary(fit_full)$coefficients[2,"Pr(>|z|)"]
 NULL

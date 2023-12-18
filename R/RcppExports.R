@@ -11,15 +11,23 @@ fisher_yates_samlper <- function(n, s, B) {
     .Call(`_camp_fisher_yates_samlper`, n, s, B)
 }
 
-run_test_resid_stat_binary_cpp <- function(trt_idxs, synthetic_idxs, resids, s, B, side, adaptive, B_0, p_thresh, return_null_distribution) {
-    .Call(`_camp_run_test_resid_stat_binary_cpp`, trt_idxs, synthetic_idxs, resids, s, B, side, adaptive, B_0, p_thresh, return_null_distribution)
+run_test_resid_stat_binary_cpp <- function(trt_idxs, synthetic_idxs, resids, s, B, side, B_0, p_thresh, return_null_distribution, fit_sn) {
+    .Call(`_camp_run_test_resid_stat_binary_cpp`, trt_idxs, synthetic_idxs, resids, s, B, side, B_0, p_thresh, return_null_distribution, fit_sn)
 }
 
-run_test_score_stat_binary_cpp <- function(trt_idxs, synthetic_idxs, a, w, D, s, B, side, adaptive, B_0, p_thresh, return_null_distribution) {
-    .Call(`_camp_run_test_score_stat_binary_cpp`, trt_idxs, synthetic_idxs, a, w, D, s, B, side, adaptive, B_0, p_thresh, return_null_distribution)
+run_test_score_stat_binary_cpp <- function(trt_idxs, synthetic_idxs, a, w, D, s, B, side, B_0, p_thresh, return_null_distribution, fit_sn) {
+    .Call(`_camp_run_test_score_stat_binary_cpp`, trt_idxs, synthetic_idxs, a, w, D, s, B, side, B_0, p_thresh, return_null_distribution, fit_sn)
 }
 
 compute_empirical_p_value <- function(null_statistics, z_orig, side) {
     .Call(`_camp_compute_empirical_p_value`, null_statistics, z_orig, side)
+}
+
+fit_skew_normal_funct <- function(y) {
+    .Call(`_camp_fit_skew_normal_funct`, y)
+}
+
+fit_and_evaluate_skew_normal <- function(z_orig, null_statistics, side_code) {
+    .Call(`_camp_fit_and_evaluate_skew_normal`, z_orig, null_statistics, side_code)
 }
 

@@ -35,7 +35,7 @@ run_score_stat_precomputation <- function(fitted_glm) {
 }
 
 
-run_resid_precomputation <- function(fit, type = "deviance") {
+run_resid_precomputation <- function(fit, type = "response") {
  resids <- stats::residuals(fit, type = type)
  return(resids)
 }
