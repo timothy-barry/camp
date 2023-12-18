@@ -7,6 +7,7 @@
 #' @param family_object a family object
 #' @param add_intercept logical indicating whether to add an intercept to the design matrix
 #' @return a vector of synthetic data generated from the GLM
+#' @export
 #' @examples
 #' # simulate data
 #' n <- 5000
@@ -33,7 +34,7 @@ generate_glm_data <- function(design_matrix, coefficients, family_object, add_in
 
 augment_family_object <- function(family_object) {
   if (is.null(family_object$augmented) || !family_object$augmented) {
-    fam_str <- gsub(x = family_object$family, replacement = "", pattern = "\\([0-9]+\\)")
+    fam_str <- gsub(x = family_object$family, replacement = "", pattern = "\\((.*)")
     if (fam_str == "Negative Binomial") {
       family_object$theta <- get(x = ".Theta", envir = environment(family_object$variance))
     }

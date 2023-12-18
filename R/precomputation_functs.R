@@ -1,4 +1,4 @@
-#' Perform score stat precomputation
+#' @export
 run_score_stat_precomputation <- function(fitted_glm) {
   # extract pieces from GLM: family object, mu, y, and covariate matrix
   family_object <- fitted_glm$family
@@ -34,13 +34,13 @@ run_score_stat_precomputation <- function(fitted_glm) {
   return(precomp_list)
 }
 
-
+#' @export
 run_resid_precomputation <- function(fit, type = "response") {
  resids <- stats::residuals(fit, type = type)
  return(resids)
 }
 
-
+#' @export
 permute_bernoulli_treatment_vector <- function(x, B = 5498L) {
   if (!all(x %in% c(0, 1))) stop("x is not a bernoulli vector.")
   n <- length(x)

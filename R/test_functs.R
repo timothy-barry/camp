@@ -1,3 +1,4 @@
+#' @export
 run_perm_test_score_stat_binary_trt <- function(permutations, precomputation, side = 0L,
                                                 return_null_distribution = FALSE, fit_sn = TRUE,
                                                 p_thresh = 0.1, B_0 = 499L) {
