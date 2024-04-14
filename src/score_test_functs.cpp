@@ -4,6 +4,7 @@ using namespace Rcpp;
 #include "shared_low_level_functions.h"
 
 
+// [[Rcpp::export]]
 double compute_observed_full_statistic(const NumericVector& a, const NumericVector& w, const NumericMatrix& D, int s, const IntegerVector& trt_idxs) {
   double lower_right = 0, lower_left = 0, top = 0, inner_sum;
   int D_nrow = D.nrow();

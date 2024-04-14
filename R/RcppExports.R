@@ -15,6 +15,10 @@ run_test_resid_stat_binary_cpp <- function(trt_idxs, synthetic_idxs, resids, s, 
     .Call(`_camp_run_test_resid_stat_binary_cpp`, trt_idxs, synthetic_idxs, resids, s, B, side, B_0, p_thresh, return_null_distribution, fit_sn)
 }
 
+compute_observed_full_statistic <- function(a, w, D, s, trt_idxs) {
+    .Call(`_camp_compute_observed_full_statistic`, a, w, D, s, trt_idxs)
+}
+
 run_test_score_stat_binary_cpp <- function(trt_idxs, synthetic_idxs, a, w, D, s, B, side, B_0, p_thresh, return_null_distribution, fit_sn) {
     .Call(`_camp_run_test_score_stat_binary_cpp`, trt_idxs, synthetic_idxs, a, w, D, s, B, side, B_0, p_thresh, return_null_distribution, fit_sn)
 }

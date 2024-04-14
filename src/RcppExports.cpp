@@ -43,6 +43,21 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// compute_observed_full_statistic
+double compute_observed_full_statistic(const NumericVector& a, const NumericVector& w, const NumericMatrix& D, int s, const IntegerVector& trt_idxs);
+RcppExport SEXP _camp_compute_observed_full_statistic(SEXP aSEXP, SEXP wSEXP, SEXP DSEXP, SEXP sSEXP, SEXP trt_idxsSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< const NumericVector& >::type a(aSEXP);
+    Rcpp::traits::input_parameter< const NumericVector& >::type w(wSEXP);
+    Rcpp::traits::input_parameter< const NumericMatrix& >::type D(DSEXP);
+    Rcpp::traits::input_parameter< int >::type s(sSEXP);
+    Rcpp::traits::input_parameter< const IntegerVector& >::type trt_idxs(trt_idxsSEXP);
+    rcpp_result_gen = Rcpp::wrap(compute_observed_full_statistic(a, w, D, s, trt_idxs));
+    return rcpp_result_gen;
+END_RCPP
+}
 // run_test_score_stat_binary_cpp
 SEXP run_test_score_stat_binary_cpp(IntegerVector trt_idxs, SEXP synthetic_idxs, NumericVector a, NumericVector w, NumericMatrix D, int s, int B, int side, int B_0, double p_thresh, bool return_null_distribution, bool fit_sn);
 RcppExport SEXP _camp_run_test_score_stat_binary_cpp(SEXP trt_idxsSEXP, SEXP synthetic_idxsSEXP, SEXP aSEXP, SEXP wSEXP, SEXP DSEXP, SEXP sSEXP, SEXP BSEXP, SEXP sideSEXP, SEXP B_0SEXP, SEXP p_threshSEXP, SEXP return_null_distributionSEXP, SEXP fit_snSEXP) {
@@ -106,6 +121,7 @@ END_RCPP
 static const R_CallMethodDef CallEntries[] = {
     {"_camp_fisher_yates_samlper", (DL_FUNC) &_camp_fisher_yates_samlper, 3},
     {"_camp_run_test_resid_stat_binary_cpp", (DL_FUNC) &_camp_run_test_resid_stat_binary_cpp, 10},
+    {"_camp_compute_observed_full_statistic", (DL_FUNC) &_camp_compute_observed_full_statistic, 5},
     {"_camp_run_test_score_stat_binary_cpp", (DL_FUNC) &_camp_run_test_score_stat_binary_cpp, 12},
     {"_camp_compute_empirical_p_value", (DL_FUNC) &_camp_compute_empirical_p_value, 3},
     {"_camp_fit_skew_normal_funct", (DL_FUNC) &_camp_fit_skew_normal_funct, 1},

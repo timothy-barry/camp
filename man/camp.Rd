@@ -2,6 +2,7 @@
 % Please edit documentation in R/camp.R
 \docType{package}
 \name{camp}
+\alias{camp-package}
 \alias{camp}
 \title{camp}
 \description{
@@ -48,4 +49,8 @@ fit_full <- glm(
   family = family_object,
 )
 summary(fit_full)$coefficients[2,"Pr(>|z|)"]
+}
+\author{
+\strong{Maintainer}: First Last \email{first.last@example.com} (\href{https://orcid.org/YOUR-ORCID-ID}{ORCID})
+
 }
